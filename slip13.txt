@@ -1,0 +1,50 @@
+a.
+import math
+
+
+def minmax(depth, nodeIndex, maxPlayer, values, target):
+    if depth == target:
+        return values[nodeIndex]
+    
+    if maxPlayer:
+        best = -math.inf
+        for i in range(2):
+            val = minmax(depth + 1, nodeIndex * 2 + i, False, values, target)
+            best = max(best, val)
+        return best
+    else:
+        best = math.inf
+        for i in range(2):
+            val = minmax(depth + 1, nodeIndex * 2 + i, True, values, target)
+            best = min(best, val)
+        return best
+
+# Test the algorithm
+values = [-1, 4, 2, 6, -3, -5, 0, 7]
+print(f"The optimal value is: {minmax(0, 0, True, values, 3)}")
+
+b.N=4
+def print_board(board):
+    for i in range(N):
+        for j in range(N):
+            print(board[i][j],end="")
+        print()
+def is_safe(board,row,col):
+    for i in range(N):
+        if board [row][i]==1 or board[i][col]==-1:
+            return False
+    for i,j in zip(range(row,-1,-1),range(col,-1,-1)):
+        if board[i][j]==1:
+            return False
+        return True
+def solveNQueens(board,col):
+    if col>=N:
+        return True
+    for i in range(N):
+        if is_safe(board,i,col):
+            board[i][col]=1
+            if solveNQueens(board,col+1)==True:
+                return True
+            board [i][col]=0
+
+            return False

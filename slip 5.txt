@@ -1,0 +1,29 @@
+a.
+import nltk
+from nltk.stem import WordNetLemmatizer
+text="studies studying studied"
+tokenized_text=nltk.word_tokenize(text)
+print("tokenized text",tokenized_text)
+lemmatizer=WordNetLemmatizer()
+print("lemmatized tokens")
+for token in tokenized_text:
+    print(lemmatizer.lemmatize(token))
+b.
+graph={1:[2,4],2:[3],3:[5,6],4:[],5:[7,8],6:[8],7:[8],8:[]}
+visited=[]
+def bfs(visited,graph,node, goal):
+    queue=[]
+    queue.append(node)
+    while queue:
+         s=queue.pop(0)
+         if s not in visited:
+             visited.append(s)
+             print(s)
+             if s == goal:
+                 return True
+             for neighbour in graph[s]:
+                 queue.append(neighbour)
+    return False
+print("path found by bfs")
+bfs(visited,graph,1,8)
+   

@@ -1,0 +1,33 @@
+a.
+import nltk
+from nltk.corpus import stopwords
+text_file=open("sample.txt","r")
+text=text_file.read()
+text_file.close()
+tokens=nltk.word_tokenize(text)
+stop_words=set(stopwords.words('english'))
+filtered_tokens=[]
+for w in tokens:
+    if w not in stop_words:
+        filtered_tokens.append(w)
+filtered_text=" ".join(filtered_tokens)
+print(filtered_text)
+b.
+graph={1:[2,3,4],2:[4,5],3:[4],4:[7],5:[6,7],6:[7],7:[]}
+visited=[]
+def bfs(visited,graph,node,goal):
+    queue=[]
+    queue.append(node)
+    while queue:
+          s=queue.pop(0)
+          if s not in visited:
+              visited.append(s)
+              print(s)
+              if s==goal:
+                  return True
+              for neighbour in graph[s]:
+                    queue.append(neighbour)
+    return False
+print("path found by bfs")
+bfs(visited,graph,1,8)
+  

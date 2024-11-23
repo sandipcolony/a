@@ -1,0 +1,50 @@
+a.
+import random
+def simple_chatbot():
+    print("hello! i am a simple chatbot.type 'exit'to end the chat")
+    while True:
+        user_input=input("you")
+        if user_input.lower()=='exit':
+            print("goodbye")
+            break
+        if "prachi bhuse" in user_input.lower():
+            print("chatbot:MCS student at kkw college")
+        elif "contact no" in user_input.lower():
+            print("chatbot:8468993466 ")
+        elif "year"in user_input.lower():
+            print("chatbot:first ")
+        elif "subjects"in user_input.lower():
+            print("chatbot: 'AOS','CLOUD COMPUTING','AI','PPL' ")
+        elif "roll no" in user_input.lower():
+            print("chatbot:07")
+        else:
+            responses=["name not found","insufficient information",random_response==random.choice(responses)]
+            print("chatbot:{random_response}")
+            
+if __name__=="__main__":
+    simple_chatbot()
+
+b.
+import math
+
+
+def minmax(depth, nodeIndex, maxPlayer, values, target):
+    if depth == target:
+        return values[nodeIndex]
+    
+    if maxPlayer:
+        best = -math.inf
+        for i in range(2):
+            val = minmax(depth + 1, nodeIndex * 2 + i, False, values, target)
+            best = max(best, val)
+        return best
+    else:
+        best = math.inf
+        for i in range(2):
+            val = minmax(depth + 1, nodeIndex * 2 + i, True, values, target)
+            best = min(best, val)
+        return best
+
+# Test the algorithm
+values = [-1, 4, 2, 6, -3, -5, 0, 7]
+print(f"The optimal value is: {minmax(0, 0, True, values, 3)}")
